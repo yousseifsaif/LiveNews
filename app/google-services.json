@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "710742229962",
+    "project_id": "live-news-a7244",
+    "storage_bucket": "live-news-a7244.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:710742229962:android:76efb96c93e23528fbc533",
+        "android_client_info": {
+          "package_name": "com.example.newsapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDg2Rq-eOv1lfPn-KBiqqxSPNRzNaf8yqc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
