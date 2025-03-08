@@ -21,5 +21,14 @@ class LauncherActivity : AppCompatActivity() {
             )
 finish()
         }, 6000)
+
+        val sharedPref = getSharedPreferences("UserSession", MODE_PRIVATE)
+        val isLoggedIn = sharedPref.getBoolean("isLoggedIn", false)
+
+        if (isLoggedIn) {
+            startActivity(Intent(this, HomeActivity::class.java))
+            finish()
+        }
+
     }
 }

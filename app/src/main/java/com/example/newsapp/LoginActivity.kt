@@ -16,8 +16,8 @@ import com.example.newsapp.databinding.ActivityLoginBinding
 import com.google.firebase.auth.FirebaseAuth
 
 class LoginActivity : AppCompatActivity() {
-     lateinit var binding : ActivityLoginBinding
-     lateinit var auth : FirebaseAuth
+    lateinit var binding: ActivityLoginBinding
+    lateinit var auth: FirebaseAuth
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -25,15 +25,19 @@ class LoginActivity : AppCompatActivity() {
         setContentView(binding.root)
         auth = FirebaseAuth.getInstance()
 
-binding.loginbtn.setOnClickListener {
-    validationLogin()
-}
+        binding.loginbtn.setOnClickListener {
+            validationLogin()
+        }
         binding.register.setOnClickListener {
             startActivity(Intent(this, SignupActivity::class.java))
 
         }
+        binding.forgotPassword.setOnClickListener {
+            startActivity(Intent(this, ForgotPasswordActivity::class.java))
     }
 
+
+}
     fun validationLogin() {
         val email = binding.emailEd.text.toString()
         val password = binding.passwordEd.text.toString()
@@ -42,25 +46,37 @@ binding.loginbtn.setOnClickListener {
         } else if (password.length <= 8) {
             Toast.makeText(this, "Password should be at least 8 characters", Toast.LENGTH_SHORT)
                 .show()
-        }else{
-            login(email,password)
-           }
+        } else {
+            login(email, password)
+        }
     }
 
-    private fun login(email: String, password: String) {
-        auth.signInWithEmailAndPassword(email,password).addOnCompleteListener(this) { task ->
+    fun login(email: String, password: String) {
+        auth.signInWithEmailAndPassword(email, password).addOnCompleteListener(this) { task ->
             if (task.isSuccessful) {
-                if (auth.currentUser!!.isEmailVerified == true){
+                if (auth.currentUser!!.isEmailVerified == true) {
+
+                    sharedPref()
                     binding.loading.visibility = View.VISIBLE
                     Handler(Looper.getMainLooper()).postDelayed({
-                        startActivity(Intent(this, HomeActivity::class.java))},3000)
+                        startActivity(Intent(this, HomeActivity::class.java))
+                    }, 3000)
 
 
-                }else{
+
+                } else {
                     binding.loading.visibility = View.INVISIBLE
 
-                    Toast.makeText(this, "Please verify your email", Toast.LENGTH_SHORT).show()}
-            }else Toast.makeText(this, task.exception.toString(), Toast.LENGTH_SHORT).show()
-        }
+                    Toast.makeText(this, "Please verify your email", Toast.LENGTH_SHORT).show()
+                }
+            } else Toast.makeText(this, task.exception.toString(), Toast.LENGTH_SHORT).show()
         }
     }
+
+    private fun sharedPref() {
+        val sharedPref = getSharedPreferences("UserSession", MODE_PRIVATE)
+        val editor = sharedPref.edit()
+        editor.putBoolean("isLoggedIn", true)
+        editor.apply()
+    }
+}
