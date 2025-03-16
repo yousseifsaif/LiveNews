@@ -1,5 +1,6 @@
 package com.example.newsapp
 
+import android.animation.ObjectAnimator
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
@@ -42,10 +43,11 @@ class LoginActivity : AppCompatActivity() {
         val email = binding.emailEd.text.toString()
         val password = binding.passwordEd.text.toString()
         if (email.isEmpty() || password.isEmpty()) {
-            Toast.makeText(this, "Please fill all the fields", Toast.LENGTH_SHORT).show()
-        } else if (password.length <= 8) {
-            Toast.makeText(this, "Password should be at least 8 characters", Toast.LENGTH_SHORT)
-                .show()
+            binding.emailEd.error = "Please enter your mail"
+            binding.passwordEd.error = "please enter your password"
+            shakeView(binding.emailEd)
+            shakeView(binding.passwordEd)
+//            Toast.makeText(this, "Please fill all the fields", Toast.LENGTH_SHORT).show()
         } else {
             login(email, password)
         }
@@ -59,7 +61,9 @@ class LoginActivity : AppCompatActivity() {
                     sharedPref()
                     binding.loading.visibility = View.VISIBLE
                     Handler(Looper.getMainLooper()).postDelayed({
-                        startActivity(Intent(this, HomeActivity::class.java))
+                        startActivity(Intent(this, HomeActivity::class.java)
+                        )
+                        finish()
                     }, 3000)
 
 
@@ -69,7 +73,7 @@ class LoginActivity : AppCompatActivity() {
 
                     Toast.makeText(this, "Please verify your email", Toast.LENGTH_SHORT).show()
                 }
-            } else Toast.makeText(this, task.exception.toString(), Toast.LENGTH_SHORT).show()
+            } else Toast.makeText(this, "Invalid email or password!", Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -78,5 +82,11 @@ class LoginActivity : AppCompatActivity() {
         val editor = sharedPref.edit()
         editor.putBoolean("isLoggedIn", true)
         editor.apply()
+    }
+
+    fun shakeView(view: View) {
+        val animator = ObjectAnimator.ofFloat(view, "translationX", 0f, 10f, -10f, 10f, -10f, 5f, -5f, 0f)
+        animator.duration = 500
+        animator.start()
     }
 }
