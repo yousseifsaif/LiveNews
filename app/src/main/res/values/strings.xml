@@ -8,7 +8,7 @@
     <string name="email">Email</string>
     <string name="log_in">Log in</string>
     <string name="live">
- <font color="#0187CB"><b>LIVE</b></font> <font color="#FF000000"><b>NEWS</b></font></string>
+ <font color="#3F9DBA"><b>LIVE</b></font> <font color="#0D5C76"><b>NEWS</b></font></string>
     <string name="send">Send</string>
     <string name="forgot_password">Forgot Password</string>
     <string name="name">Name</string>

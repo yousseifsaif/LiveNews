@@ -1,7 +1,13 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
-    <style name="Base.Theme.NewsApp" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your dark theme here. -->
-        <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
+<resources>
+    <color name="black">#FFFFFFFF</color>
+    <color name="white">#FF000000</color>
+    <color name="blue">#80D0FF</color>
+    <color name="gradient_start">#2A4F63</color>
+    <color name="gradient_middle">#0A4B6F</color>
+    <color name="gradient_end">#072D44</color>
+    <style name="Theme.MyApp" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+
     </style>
 </resources>

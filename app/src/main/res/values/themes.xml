@@ -1,10 +1,15 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
-    <style name="Base.Theme.NewsApp" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="blue">#0187CB</color>
+    <color name="gradient_start">#376F85</color>
+    <color name="gradient_middle">#1179AB</color>
+    <color name="gradient_end">#0B486A</color>
+
+    <style name="Theme.MyApp" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
 
     </style>
-
-    <style name="Theme.NewsApp" parent="Base.Theme.NewsApp" />
 </resources>

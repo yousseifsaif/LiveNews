@@ -12,7 +12,7 @@ import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.example.newsapp.R
 import com.example.newsapp.databinding.ContentVerticalBinding
 
-class NewsAdapter(val activity: Activity, val articles: List<Articles>) :
+class NewsAdapter(val activity: Activity, val articles: List<Articles>, val onFavoriteClick: (Articles) -> Unit) :
     Adapter<NewsAdapter.NewsViewHolder>() {
     class NewsViewHolder(val binding: ContentVerticalBinding) :
         RecyclerView.ViewHolder(binding.root) {
@@ -44,7 +44,9 @@ class NewsAdapter(val activity: Activity, val articles: List<Articles>) :
             )
         holder.binding.favourite.setOnClickListener {
             articles[position].isFav = !articles[position].isFav
-            notifyItemChanged(position) // تحديث العنصر لتغيير الأيقونة
+            onFavoriteClick(articles[position])
+
+            notifyItemChanged(position)
         }
         }
     }
